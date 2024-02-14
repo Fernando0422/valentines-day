@@ -1,0 +1,85 @@
+body {
+    background-image: url("valentine.png");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Dancing Script', cursive; /* Updated font family */
+}
+#loveReason {
+    margin-top: 20px;
+    font-size: 24px;
+    color: #ff1493; /* Deep pink color */
+}
+h1 {
+    padding: 20px;
+    margin: 20px;
+    font-family: 'Dancing Script', cursive; /* Ensure consistency */
+    position: relative;
+    top: 30px;
+}
+#loveButton { /* Updated selector to use ID instead of class for specificity */
+    background-color: #ffb6c1; /* Light pink color */
+    color: white; /* Contrast color for text */
+    border: none;
+    padding: 10px 20px;
+    font-family: 'Dancing Script', cursive; /* Cursive font for the button */
+    font-size: 20px;
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+
+
+}
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    font-family: 'Dancing Script', cursive;
+}
+.carousel {
+    position: relative;
+    max-width: 500px; 
+    margin: auto;
+    overflow: hidden;
+    top: -80px;
+}
+.carousel-images img {
+    /* Set a specific size for the images to make them squares */
+    width: 450px; /* Example size, adjust as needed */
+    height: 450px; /* Make height equal to the width for a square */
+    display: none;
+    object-fit: cover; /* This will ensure the images cover the space nicely without distortion */
+}
+
+.carousel-images img.active {
+    display: block;
+}
+
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}

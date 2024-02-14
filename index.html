@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I love you, Jadon <3</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Corrected Audio Player Section -->
+    <div class="audio-player">
+        <audio controls>
+            <source src="stilllovingyou.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <h1>Hi Jadon! Happy valentines day! I can't tell you all the reasons I love you but here are 100 reasons </h1>
+    <button id="loveButton">Why I Love You</button>
+    <div id="loveReason"></div>
+    <div id="anniversaryCountup">Days since our anniversary: <span id="daysCount">0</span> days</div>
+
+    <div class="carousel">
+        <div class="carousel-images">
+            <img src="1.png" alt="Memory 1" class="active">
+            <img src="2.png" alt="Memory 2">
+            <img src="3.png" alt="Memory 3">
+            <img src="4.png" alt="Memory 4">
+            <img src="5.png" alt="Memory 5">
+            <img src="6.png" alt="Memory 6">
+            <img src="7.png" alt="Memory 7">
+        </div>
+        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="next" onclick="changeSlide(1)">&#10095;</a>
+    </div>
+
+    <script>
+    const reasons = [
+        "Your smile lights up my world.",
+        "You always know how to make me laugh.",
+        "Your kindness knows no bounds.",
+        "You're my rock in tough times.",
+        "The way you look at me makes me feel loved.",
+        "Your passion for your hobbies is infectious.",
+        "You make every day brighter.",
+        "Your intelligence amazes me every day.",
+        "You have the biggest heart.",
+        "Your hugs are my safe place.",
+        "We share the same dreams and aspirations.",
+        "You listen to me, truly listen.",
+        "You encourage me to be my best self.",
+        "Your sense of humor matches mine perfectly.",
+        "We make the perfect team.",
+        "Your strength and resilience inspire me.",
+        "You believe in me, even when I doubt myself.",
+        "Your patience is a gift.",
+        "You're my best friend.",
+        "You make me feel beautiful.",
+        "Your love is unconditional.",
+        "We can talk about anything and everything.",
+        "You're always there when I need you.",
+        "You make me want to be a better person.",
+        "Your creativity astounds me.",
+        "You understand me like no one else.",
+        "Your generosity knows no limits.",
+        "You have a way of making everything fun.",
+        "Your ambition drives me.",
+        "You're always up for an adventure.",
+        "Your loyalty is unwavering.",
+        "You make me feel secure and loved.",
+        "Your laugh is my favorite sound.",
+        "You're not afraid to be yourself around me.",
+        "You have a great sense of style.",
+        "You appreciate the little things in life.",
+        "You're thoughtful and considerate.",
+        "Your optimism lifts me up.",
+        "You have a beautiful soul.",
+        "Your cooking skills are out of this world.",
+        "You're my partner in crime.",
+        "Your love for animals is adorable.",
+        "You're incredibly supportive.",
+        "You make my heart skip a beat.",
+        "Your dedication to our relationship is unwavering.",
+        "You're always learning and growing.",
+        "You respect my boundaries.",
+        "You challenge me in a good way.",
+        "You're honest and trustworthy.",
+        "Your affectionate nature warms my heart.",
+        "You have a great taste in music.",
+        "Your commitment to your work is inspiring.",
+        "You make mundane tasks enjoyable.",
+        "You're always respectful to everyone.",
+        "Your ability to stay calm under pressure.",
+        "You have the kindest eyes.",
+        "Your voice is my favorite sound.",
+        "You make me feel like I can achieve anything.",
+        "You're an amazing listener.",
+        "Your advice is always spot-on.",
+        "You have a way of making me feel cherished.",
+        "Your presence is comforting.",
+        "You're passionate about making a difference.",
+        "Your love for your family is beautiful.",
+        "You have an amazing sense of humor.",
+        "You're brave and bold.",
+        "Your touch sends shivers down my spine.",
+        "You're always striving to be better.",
+        "You make me laugh until my sides hurt.",
+        "Your ability to see the best in people.",
+        "You're my favorite person to spend time with.",
+        "Your energy is infectious.",
+        "You keep our love exciting and new.",
+        "You have an incredible way with words.",
+        "You're always considerate of my feelings.",
+        "You make every moment special.",
+        "You're the person I want to share my secrets with.",
+        "You're always willing to help others.",
+        "You have a deep respect for nature.",
+        "Your artistic talents are awe-inspiring.",
+        "You make me feel like the only person in the world.",
+        "You're always up for trying new things.",
+        "The way you look at me.",
+        "You're always organized and prepared.",
+        "You make my days better just by being in them.",
+        "Your love for adventure is contagious.",
+        "You have a deep sense of empathy.",
+        "You're always there to offer a shoulder to cry on.",
+        "Your passion for life is inspiring.",
+        "You make me feel loved in ways I never knew possible.",
+        "You're my constant in a changing world.",
+        "Your love for reading and learning is something I admire.",
+        "You're always optimistic, even in tough times.",
+        "You have a unique perspective on life.",
+        "You're the reason I believe in love.",
+        "You make me excited for our future together.",
+        "Your ability to make friends wherever you go.",
+        "You cherish our moments together.",
+        "You're the kindest person I know.",
+        "You make me feel like I'm enough.",
+        "You're always pushing me to reach my goals.",
+        "Your love is my favorite place to be."    
+    ];
+
+    document.getElementById("loveButton").addEventListener("click", function() {
+        const randomIndex = Math.floor(Math.random() * reasons.length);
+        document.getElementById("loveReason").innerText = reasons[randomIndex];
+    });
+
+    const anniversary = new Date('2024-07-07');
+    const now = new Date();
+    const difference = now - anniversary;
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    document.getElementById('daysCount').innerText = days;
+
+    let slideIndex = 0; // Start at the first image
+
+    function changeSlide(step) {
+        let slides = document.querySelectorAll('.carousel-images img');
+        const totalSlides = slides.length;
+        slides[slideIndex].classList.remove('active');
+        slideIndex += step;
+        if (slideIndex >= totalSlides) slideIndex = 0;
+        if (slideIndex < 0) slideIndex = totalSlides - 1;
+        slides[slideIndex].classList.add('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        changeSlide(0);
+    });
+    </script>
+
+    <footer>
+        <p>Created with all my love, Fernando. Happy Valentine's Day 2024!</p>
+    </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
