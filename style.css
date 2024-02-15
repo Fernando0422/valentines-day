@@ -6,20 +6,25 @@ body {
     flex-direction: column;
     min-height: 100vh;
     font-family: 'Dancing Script', cursive; /* Updated font family */
+    margin: 0; /* Remove default margin */
+    padding: 20px; /* Add some padding */
+    box-sizing: border-box; /* Include padding in the box model */
 }
+
 #loveReason {
     margin-top: 20px;
     font-size: 24px;
     color: #ff1493; /* Deep pink color */
+    text-align: center; /* Center text for better mobile viewing */
 }
+
 h1 {
-    padding: 20px;
-    margin: 20px;
     font-family: 'Dancing Script', cursive; /* Ensure consistency */
-    position: relative;
-    top: 30px;
+    text-align: center; /* Center heading */
+    margin: 20px 0; /* Adjust margin */
 }
-#loveButton { /* Updated selector to use ID instead of class for specificity */
+
+#loveButton {
     background-color: #ffb6c1; /* Light pink color */
     color: white; /* Contrast color for text */
     border: none;
@@ -29,36 +34,47 @@ h1 {
     border-radius: 5px; /* Rounded corners for the button */
     cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
     transition: background-color 0.3s ease; /* Smooth transition for hover effect */
-
-
+    display: block; /* Ensure button is block level for better mobile experience */
+    margin: 20px auto; /* Center button horizontally */
 }
+
 footer {
-    position: absolute;
+    position: relative; /* Changed from absolute to avoid overlap on mobile */
     bottom: 0;
     width: 100%;
     text-align: center;
     padding: 20px;
     font-family: 'Dancing Script', cursive;
 }
+
 .carousel {
     position: relative;
-    max-width: 500px; 
-    margin: auto;
-    overflow: hidden;
-    top: -80px;
+    max-width: 100%; /* Ensure carousel is not wider than the screen */
+    margin: 20px auto; /* Center carousel */
+    display: flex; /* Use flexbox to center images */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
 }
+
+.carousel-images {
+    width: 100%; /* Full width of the carousel */
+    display: flex; /* Use flexbox for the images container */
+    justify-content: center; /* Center images horizontally */
+    align-items: center; /* Center images vertically */
+}
+
 .carousel-images img {
-    /* Set a specific size for the images to make them squares */
-    width: 450px; /* Example size, adjust as needed */
-    height: 450px; /* Make height equal to the width for a square */
-    display: none;
-    object-fit: cover; /* This will ensure the images cover the space nicely without distortion */
+    width: 100%; /* Adjust width as needed, considering responsiveness */
+    max-width: 450px; /* Maximum width for large displays */
+    height: auto; /* Adjust height automatically */
+    display: none; /* Hide images by default */
+    object-fit: cover; /* Cover the area without distortion */
+    margin: 0 auto; /* Center images */
 }
 
 .carousel-images img.active {
-    display: block;
+    display: block; /* Only the active image is displayed */
 }
-
 
 .prev, .next {
     cursor: pointer;
@@ -75,11 +91,78 @@ footer {
     user-select: none;
 }
 
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%; /* Centers vertically but can overlap with flex items */
+    transform: translateY(-50%); /* Adjusts for the height of the buttons */
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    z-index: 1; /* Ensure buttons are above the images */
+}
+
 .next {
     right: 0;
     border-radius: 3px 0 0 3px;
 }
 
+/* Adjusting button positions to be inside the carousel edges */
+.prev {
+    left: 10px; /* Adjust if needed to not overlap with the screen edge on small devices */
+}
+
+.next {
+    right: 10px; /* Adjust if needed */
+}
+
 .prev:hover, .next:hover {
     background-color: rgba(0,0,0,0.8);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .prev, .next {
+        padding: 10px; /* Smaller padding for smaller screens */
+        font-size: 16px; /* Smaller font size for the arrows */
+    }
+}
+
+@media (max-width: 480px) {
+    .prev, .next {
+        padding: 8px; /* Even smaller padding for very small devices */
+        font-size: 14px; /* Even smaller font size for the arrows */
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    h1, #loveReason, #loveButton {
+        padding: 10px;
+        font-size: 18px; /* Adjust font size for smaller screens */
+    }
+
+    .carousel-images img {
+        width: 80%;
+        height: auto; /* Adjust for aspect ratio */
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px; /* Reduce padding for very small devices */
+    }
+
+    h1, #loveReason, #loveButton {
+        font-size: 16px; /* Further reduce font size for small screens */
+    }
+
+    .carousel {
+        top: 20px; /* Adjust carousel position */
+    }
 }
